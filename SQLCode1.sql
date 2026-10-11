@@ -1,0 +1,42 @@
+use himanshu;
+
+select * from amazon_grocery_cleaned;
+select count(*) from amazon_grocery_cleaned; -- to display count of records
+
+select * from amazon_grocery_cleaned limit 5 ; -- to display first 5 records 
+
+select * from amazon_grocery_cleaned order by sales desc limit 10; 
+
+select sum(sales) , `Item Fat Content` from amazon_grocery_cleaned group by `Item Fat Content`;
+-- 1. Total Sales Check rounded off to 0 decimal places
+SELECT round(sum(Sales),0) as Total_Sales_made from amazon_grocery_cleaned;
+-- Finds the total sales generated from all products.
+-- 3. Sales by Item Type
+SELECT `Item Type`, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY `Item Type` ORDER BY Total_Sales DESC;
+
+-- 4. Sales by Outlet Type
+SELECT `Outlet Type`, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY `Outlet Type` ORDER BY Total_Sales DESC;
+
+-- 5. Sales by Location
+SELECT `Outlet Location Type`, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY `Outlet Location Type` ORDER BY Total_Sales DESC;
+
+-- 6. Sales by Outlet Size
+SELECT `Outlet Size`, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY `Outlet Size` ORDER BY Total_Sales DESC;
+
+-- 7. Sales by Fat Content
+SELECT `Item Fat Content`, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY `Item Fat Content` ORDER BY Total_Sales DESC;
+
+-- 8. Top  Products 20 by sales
+SELECT `Item Identifier`,`Item Type`,Sales FROM amazon_grocery_cleaned ORDER BY Sales DESC LIMIT 20;
+
+-- 9. Sales by Category
+SELECT Sales_Category, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY Sales_Category ORDER BY Total_Sales DESC;
+
+-- 10. Average Rating by Item Type
+SELECT `Item Type`, round(AVG(Rating),2) AS Average_Rating FROM amazon_grocery_cleaned GROUP BY `Item Type` ORDER BY Average_Rating DESC;
+
+-- 11. Sales by Outlet Age
+SELECT Outlet_Age, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY Outlet_Age ORDER BY Outlet_Age;
+
+-- 12. Sales by Establishment Year
+SELECT `Outlet Establishment Year`, round(sum(Sales),0) AS Total_Sales FROM amazon_grocery_cleaned GROUP BY `Outlet Establishment Year` ORDER BY `Outlet Establishment Year`;
